@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 # Cálculo de la jubilación
 # Incorpora el año actual al programa.
