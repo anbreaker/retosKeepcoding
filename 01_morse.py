@@ -34,4 +34,5 @@ while True:
     mensaje = mensaje.upper()
     traducirAMorse(mensaje)
     if mensaje == '' or mensaje == ' ':
+        print('Hasta la proxima')
         break
