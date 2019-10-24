@@ -27,9 +27,11 @@ def validarCantidad(cantidad):
 # Pedir entrada de datos
 while True:
     try:
-        cantidadInvertir = float(input('Introduce Cantidad a invertir: '))
-        cantidadInvertir = round(float(cantidadInvertir, 2))
-        tasaInteres = float(input('Introduce tasa de interes: '))
+        cantidadInvertida = float(input('Introduce Cantidad Invertida: '))
+        cI = round(cantidadInvertida, 2)
+        years = int(input('Años transcurridos: '))
+        tasaInteres = float(input('Introduce tasa de interes anual: '))
+        ganancia = cI * (1 + (tasaInteres / 100) * years)
     except ValueError:
         print('Debes introducir sólo numéros. ')
     else:
@@ -37,6 +39,8 @@ while True:
             print('Debes introducir numéros positivos. ')
         else:
             break
+
+print(f'Tras {years} años de inversion al {tasaInteres:.2f}%, su cantidad debe ser {ganancia:.2f}')
 
 '''
 strQ = input("Cantidad invertida: ")
