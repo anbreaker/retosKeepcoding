@@ -1,4 +1,3 @@
-
 from datetime import datetime
 
 # Cálculo de la jubilación
@@ -31,7 +30,7 @@ def tiempoHastaJubilacion(edad, jubilacion):
     # print('tipo -->', type(year))
     yearJubilacion = (int(year)+tiempoHastaJubilacion)
     # print(f'año jubliacion--> {yearJubilacion}')
-    return yearJubilacion
+    return tiempoHastaJubilacion, yearJubilacion
 
 
 # Pedir edad
@@ -62,4 +61,4 @@ while True:
 
 faltan = tiempoHastaJubilacion(edad, jubilacion)
 print(
-    f'Estamos en {year} tienes {edad} años, te vas a jubilar con {jubilacion} y te quedan {faltan} hasta el año {yearJubilacion}')
+    f'Estamos en {year} tienes {edad} años, te vas a jubilar con {jubilacion} y te quedan {faltan[0]} hasta el año {faltan[1]}')
