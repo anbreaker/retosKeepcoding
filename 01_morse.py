@@ -22,7 +22,9 @@ morse = {'A': '._', 'B': '_...', 'C': '_._.', 'D': '_..', 'E': '_.', 'F': '.._.'
 def traducirAMorse(mensaje):
     mensajeMorse = ''
     for caracter in mensaje:
-        if caracter in morse:
+        if caracter not in morse:
+            mensajeMorse += '{X}'
+        else:
             mensajeMorse += morse[caracter]
     print(f'{mensajeMorse}')
     return mensajeMorse
