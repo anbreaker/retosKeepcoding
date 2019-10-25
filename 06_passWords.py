@@ -1,3 +1,5 @@
+import getpass
+
 # Validando contraseñas
 # Crear un programa que pida usuario y contraseña y valide si coinciden.
 # En caso de coincidir devolver el mensaje:
@@ -13,18 +15,26 @@
 #     Impide que la contraseña se vea. Investiga para ello
 #     Utiliza un diccionario en lugar de una tupla de tuplas
 
-listaUser = {'anbreaker': 'anbreakerPass',
-             'jessica': 'jessicaPass',
-             'ramon': 'ramonPass'}
-
-usuario = input('Introduce nombre usuario: ')
+listaUser = {'anbreaker': 'pass',
+             'jessica': 'pass',
+             'ramon': 'pass'}
 
 
+def existeUser(usuario):
+    if usuario in listaUser:
+        return True
+    else:
+        return False
+
+
+# Pedir Usuario
 try:
+    usuario = input('Introduce nombre usuario: ')
     if listaUser[usuario]:
         print(f'Existe el usuario {usuario}')
-        password = input('Introduce tu contraseña: ')
-        if listaUser.get(usuario) == password:
+        # Pedir contraseña
+        passKey = getpass.getpass(prompt='Introduce la contraseña ')
+        if passKey.lower() == listaUser.get(usuario):
             print('Puede pasar')
         else:
             print('No puede pasar')
