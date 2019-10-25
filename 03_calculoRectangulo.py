@@ -32,17 +32,18 @@ def calculoYardasCuadradas(superficieMetros):
 
 
 # Pedir entrada de datos
-while True:
+
+ancho = alto = 0
+
+while not validarMedida(ancho) or not validarMedida(alto):
     try:
-        ancho = int(input('Ancho de la habitacion: '))
-        alto = int(input('Largo de la habitacion: '))
+        if not validarMedida(ancho):
+            ancho = float(input('Ancho de la habitacion: '))
+
+        if not validarMedida(alto):
+            alto = float(input('Largo de la habitacion: '))
     except ValueError:
         print('Debes introducir sólo numéros. ')
-    else:
-        if not validarMedida(ancho) or not validarMedida(alto):
-            print('Debes introducir numéros positivos. ')
-        else:
-            break
 
 superficieM = calculoMetrosCuadrados(ancho, alto)
 superficieY = calculoYardasCuadradas(superficieM)
