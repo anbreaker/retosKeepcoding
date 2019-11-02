@@ -34,7 +34,7 @@ def cifrarTexto(texto):
         if c in _ABECEDARIO or c == ' ':
             if indice == 25 or indice == 26:
                 textoCrip += _ABECEDARIO[(indice-25)]
-            if c == ' ':
+            elif c == ' ':
                 textoCrip += ' '
             else:
                 textoCrip += _ABECEDARIO[(indice+2)]
@@ -47,6 +47,7 @@ def descrifrarTexto(texto):
         indice = _ABECEDARIO.find(c)
         if c in _ABECEDARIO:
             if indice == 0 or indice == 1:
+                print(f'Ver letra--> {_ABECEDARIO[(indice+25)]}')
                 descifrado += _ABECEDARIO[(indice+25)]
             else:
                 descrifrado += _ABECEDARIO[(indice-2)]
@@ -60,11 +61,11 @@ def validarEntradaOpcion(opcion):
         if opcion == '1':
             # Pedir texto
             texto = input('Introduce el texto que desea cifrar: ')
-            cifrarTexto(texto)
+            cifrarTexto(texto.lower())
         else:
             # Pedir texto
             texto = input('Introduce el texto a Descifrar: ')
-            descrifrarTexto(texto)
+            descrifrarTexto(texto.lower())
         return True
 
 
