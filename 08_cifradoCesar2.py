@@ -27,21 +27,15 @@ def convertirAcentos(texto):
     return texto
 
 
-def esValida(cadena):
-    if not cadena.isalpha() or cadena[0] == 'ª' or cadena[0] == 'º':
-        return False
-    else:
-        convertirAcentos(cadena)
-        return True
-
-
 def cifrarTexto(texto):
     global textoCrip
     for c in texto:
         indice = _ABECEDARIO.find(c)
-        if c in _ABECEDARIO:
+        if c in _ABECEDARIO or c == ' ':
             if indice == 25 or indice == 26:
                 textoCrip += _ABECEDARIO[(indice-25)]
+            if c == ' ':
+                textoCrip += ' '
             else:
                 textoCrip += _ABECEDARIO[(indice+2)]
     return textoCrip
@@ -66,16 +60,10 @@ def validarEntradaOpcion(opcion):
         if opcion == '1':
             # Pedir texto
             texto = input('Introduce el texto que desea cifrar: ')
-            while not esValida(texto):
-                print('El texto debe ser alfabetico')
-                texto = input('Introduce el texto que desea cifrar: ')
             cifrarTexto(texto)
         else:
             # Pedir texto
             texto = input('Introduce el texto a Descifrar: ')
-            while not esValida(texto):
-                print('El texto debe ser alfabetico')
-                texto = input('Introduce el texto a Descifrar: ')
             descrifrarTexto(texto)
         return True
 
