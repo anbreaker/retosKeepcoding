@@ -16,6 +16,7 @@
 _POSIBLE_VALOR_ENTRADA = 'áéíóúüçÇÁÉÍÓÚ'
 _SALIDA = 'aeiouuzZAEIOU'
 _ABECEDARIO = 'abcdefghijklmnñoqprstuvwxyz'
+_NUMEROS = '0123456789'
 textoCrip = ''
 descifrado = ''
 
@@ -31,13 +32,20 @@ def cifrarTexto(texto):
     global textoCrip
     for c in texto:
         indice = _ABECEDARIO.find(c)
-        if c in _ABECEDARIO or c == ' ':
-            if indice == 25 or indice == 26:
+        indiceNum = _NUMEROS.find(c)
+        if c in _ABECEDARIO or c in _NUMEROS or c == ' ' or c.isascii():
+            if indiceNum == 8 or indiceNum == 9:
+                textoCrip += _NUMEROS[(indiceNum-8)]
+            elif indiceNum != -1:
+                textoCrip += _NUMEROS[(indiceNum+2)]
+            elif indice == 25 or indice == 26:
                 textoCrip += _ABECEDARIO[(indice-25)]
             elif c == ' ':
                 textoCrip += ' '
-            else:
+            elif indice != -1:
                 textoCrip += _ABECEDARIO[(indice+2)]
+            else:
+                textoCrip += c
     return textoCrip
 
 
@@ -45,14 +53,20 @@ def descrifrarTexto(texto):
     global descifrado
     for c in texto:
         indice = _ABECEDARIO.find(c)
-        if c in _ABECEDARIO or c == ' ':
-            if indice == 0 or indice == 1:
-                print(f'Ver letra--> {_ABECEDARIO[(indice+25)]}')
+        indiceNum = _NUMEROS.find(c)
+        if c in _ABECEDARIO or c in _NUMEROS or c == ' ' or c.isascii():
+            if indiceNum == 8 or indiceNum == 9:
+                descifrado += _NUMEROS[(indiceNum+8)]
+            elif indiceNum != -1:
+                descifrado += _NUMEROS[(indiceNum-2)]
+            elif indice == 0 or indice == 1:
                 descifrado += _ABECEDARIO[(indice+25)]
             elif c == ' ':
                 descifrado += ' '
-            else:
+            elif indice != -1:
                 descifrado += _ABECEDARIO[(indice-2)]
+            else:
+                descifrado += c
     return descifrado
 
 
