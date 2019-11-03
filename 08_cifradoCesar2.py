@@ -17,7 +17,7 @@ _POSIBLE_VALOR_ENTRADA = 'áéíóúüçÇÁÉÍÓÚ'
 _SALIDA = 'aeiouuzZAEIOU'
 _ABECEDARIO = 'abcdefghijklmnñoqprstuvwxyz'
 textoCrip = ''
-descrifrado = ''
+descifrado = ''
 
 
 def convertirAcentos(texto):
@@ -42,16 +42,18 @@ def cifrarTexto(texto):
 
 
 def descrifrarTexto(texto):
-    global descrifrado
+    global descifrado
     for c in texto:
         indice = _ABECEDARIO.find(c)
-        if c in _ABECEDARIO:
+        if c in _ABECEDARIO or c == ' ':
             if indice == 0 or indice == 1:
                 print(f'Ver letra--> {_ABECEDARIO[(indice+25)]}')
                 descifrado += _ABECEDARIO[(indice+25)]
+            elif c == ' ':
+                descifrado += ' '
             else:
-                descrifrado += _ABECEDARIO[(indice-2)]
-    return descrifrado
+                descifrado += _ABECEDARIO[(indice-2)]
+    return descifrado
 
 
 def validarEntradaOpcion(opcion):
@@ -80,6 +82,6 @@ while not validarEntradaOpcion(opcion):
                     \n\t 2- Descifrartexto\n\t\t\t\t')
 
 if textoCrip == '':
-    print(f'El Texto Descifrado es: \t\'{descrifrado}\'')
-if descrifrado == '':
+    print(f'El Texto Descifrado es: \t\'{descifrado}\'')
+if descifrado == '':
     print(f'El Texto cifrado es: \t\'{textoCrip}\'')
