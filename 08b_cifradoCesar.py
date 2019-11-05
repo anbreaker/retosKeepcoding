@@ -19,6 +19,7 @@ _ABECEDARIO = 'abcdefghijklmnñoqprstuvwxyz'
 _NUMEROS = '0123456789'
 textoCrip = ''
 descifrado = ''
+desplazamiento = 0
 
 
 def convertirAcentos(texto):
@@ -28,26 +29,27 @@ def convertirAcentos(texto):
     return texto
 
 
-def calculoDesplazamiento(distancia):
+def calculoDesplazamiento(desplazamiento):
     pass
 
 
 def cifrarTexto(texto):
     global textoCrip
+    global desplazamiento
     for c in texto:
         indice = _ABECEDARIO.find(c)
         indiceNum = _NUMEROS.find(c)
         if c in _ABECEDARIO or c in _NUMEROS or c == ' ' or c.isascii():
             if indiceNum == 8 or indiceNum == 9:
-                textoCrip += _NUMEROS[(indiceNum-8)]
+                textoCrip += _NUMEROS[(indiceNum-int(desplazamiento))]
             elif indiceNum != -1:
-                textoCrip += _NUMEROS[(indiceNum+2)]
+                textoCrip += _NUMEROS[(indiceNum+int(desplazamiento))]
             elif indice == 25 or indice == 26:
-                textoCrip += _ABECEDARIO[(indice-25)]
+                textoCrip += _ABECEDARIO[(indice-int(desplazamiento))]
             elif c == ' ':
                 textoCrip += ' '
             elif indice != -1:
-                textoCrip += _ABECEDARIO[(indice+2)]
+                textoCrip += _ABECEDARIO[(indice+int(desplazamiento))]
             else:
                 textoCrip += c
     return textoCrip
@@ -90,12 +92,11 @@ def validarEntradaOpcion(opcion):
 
 
 def validarEntradaDesplazamiento(desplazamiento):
-    if distancia < 1:
+    esDesplazamientoDigit = desplazamiento
+    while esDesplazamientoDigit.isdigit() == False:  # isdigit() se usa para validar entrada de numeros
+        print('Ha ingresado numeros menores a 0, letras o simbolos')
         return False
     else:
-        if opcion == '1':
-            pass
-
         return True
 
 
@@ -103,17 +104,21 @@ def validarEntradaDesplazamiento(desplazamiento):
 opcion = input('Elija opcion (Escriba el Nº):\
                   \n\t 1- Cifrar un texto\
                   \n\t 2- Descifrartexto\n\t\t\t\t')
+
+# Pedir distancia entre caracteres
+desplazamiento = input('Introduzca el desplazamiento entre caracteres: ')
+
 while not validarEntradaOpcion(opcion):
     print('Debe elgir escribiendo el numero que identica la opcion: ')
     opcion = input('Elija opcion (Escriba el Nº):\
                     \n\t 1- Cifrar un texto\
                     \n\t 2- Descifrartexto\n\t\t\t\t')
 
-# Pedir distancia entre caracteres
-desplazamiento = input('Introduzca el desplazamiento entre caracteres')
-while not validarEntradaDistancia(desplazamiento):
-    print('Debes introducir un desplazamiento para poder cifrar el mensaje: ')
-    desplazamiento = input('Introduzca el desplazamiento entre caracteres')
+
+while not validarEntradaDesplazamiento(desplazamiento):
+    print('Debe introducir un desplazamiento para poder cifrar el mensaje: ')
+    desplazamiento = input('Introduzca el desplazamiento entre caracteres: ')
+    validarEntradaDesplazamiento(desplazamiento)
 
 
 if textoCrip == '':
