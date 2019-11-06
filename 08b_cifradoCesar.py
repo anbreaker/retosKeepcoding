@@ -29,10 +29,6 @@ def convertirAcentos(texto):
     return texto
 
 
-def calculoDesplazamiento(desplazamiento):
-    pass
-
-
 def cifrarTexto(texto):
     global textoCrip
     global desplazamiento
@@ -41,15 +37,15 @@ def cifrarTexto(texto):
         indiceNum = _NUMEROS.find(c)
         if c in _ABECEDARIO or c in _NUMEROS or c == ' ' or c.isascii():
             if indiceNum == 8 or indiceNum == 9:
-                textoCrip += _NUMEROS[(indiceNum-int(desplazamiento))]
+                textoCrip += _NUMEROS[(indiceNum-(int(desplazamiento) % 10))]
             elif indiceNum != -1:
-                textoCrip += _NUMEROS[(indiceNum+int(desplazamiento))]
+                textoCrip += _NUMEROS[(indiceNum+(int(desplazamiento) % 10))]
             elif indice == 25 or indice == 26:
-                textoCrip += _ABECEDARIO[(indice-int(desplazamiento))]
+                textoCrip += _ABECEDARIO[(indice-(int(desplazamiento) % 27))]
             elif c == ' ':
                 textoCrip += ' '
             elif indice != -1:
-                textoCrip += _ABECEDARIO[(indice+int(desplazamiento))]
+                textoCrip += _ABECEDARIO[(indice+(int(desplazamiento) % 27))]
             else:
                 textoCrip += c
     return textoCrip
@@ -62,15 +58,15 @@ def descrifrarTexto(texto):
         indiceNum = _NUMEROS.find(c)
         if c in _ABECEDARIO or c in _NUMEROS or c == ' ' or c.isascii():
             if indiceNum == 8 or indiceNum == 9:
-                descifrado += _NUMEROS[(indiceNum+8)]
+                descifrado += _NUMEROS[(indiceNum+(int(desplazamiento) % 10))]
             elif indiceNum != -1:
-                descifrado += _NUMEROS[(indiceNum-2)]
+                descifrado += _NUMEROS[(indiceNum-(int(desplazamiento) % 10))]
             elif indice == 0 or indice == 1:
-                descifrado += _ABECEDARIO[(indice+25)]
+                descifrado += _ABECEDARIO[(indice+(int(desplazamiento) % 27))]
             elif c == ' ':
                 descifrado += ' '
             elif indice != -1:
-                descifrado += _ABECEDARIO[(indice-2)]
+                descifrado += _ABECEDARIO[(indice-(int(desplazamiento) % 27))]
             else:
                 descifrado += c
     return descifrado
