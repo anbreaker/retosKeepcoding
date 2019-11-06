@@ -36,16 +36,12 @@ def cifrarTexto(texto):
         indice = _ABECEDARIO.find(c)
         indiceNum = _NUMEROS.find(c)
         if c in _ABECEDARIO or c in _NUMEROS or c == ' ' or c.isascii():
-            if indiceNum == 8 or indiceNum == 9:
-                textoCrip += _NUMEROS[(indiceNum-(int(desplazamiento) % 10))]
-            elif indiceNum != -1:
-                textoCrip += _NUMEROS[(indiceNum+(int(desplazamiento) % 10))]
-            elif indice == 25 or indice == 26:
-                textoCrip += _ABECEDARIO[(indice-(int(desplazamiento) % 27))]
+            if indiceNum != -1:
+                textoCrip += _NUMEROS[(indiceNum + int(desplazamiento)) % 10]
             elif c == ' ':
                 textoCrip += ' '
             elif indice != -1:
-                textoCrip += _ABECEDARIO[(indice+(int(desplazamiento) % 27))]
+                textoCrip += _ABECEDARIO[(indice+int(desplazamiento)) % 27]
             else:
                 textoCrip += c
     return textoCrip
@@ -57,19 +53,27 @@ def descrifrarTexto(texto):
         indice = _ABECEDARIO.find(c)
         indiceNum = _NUMEROS.find(c)
         if c in _ABECEDARIO or c in _NUMEROS or c == ' ' or c.isascii():
-            if indiceNum == 8 or indiceNum == 9:
-                descifrado += _NUMEROS[(indiceNum+(int(desplazamiento) % 10))]
-            elif indiceNum != -1:
-                descifrado += _NUMEROS[(indiceNum-(int(desplazamiento) % 10))]
-            elif indice == 0 or indice == 1:
-                descifrado += _ABECEDARIO[(indice+(int(desplazamiento) % 27))]
+            if indiceNum != -1:
+                descifrado += _NUMEROS[(indiceNum - int(desplazamiento)) % 10]
             elif c == ' ':
                 descifrado += ' '
             elif indice != -1:
-                descifrado += _ABECEDARIO[(indice-(int(desplazamiento) % 27))]
+                descifrado += _ABECEDARIO[(indice - int(desplazamiento)) % 27]
             else:
                 descifrado += c
     return descifrado
+
+
+def pedirDesplazamiento():
+    global desplazamiento
+    # Pedir distancia entre caracteres
+    desplazamiento = input('Introduzca el desplazamiento entre caracteres: ')
+    while not validarEntradaDesplazamiento(desplazamiento):
+        print('Debe introducir un desplazamiento para poder cifrar el mensaje: ')
+        desplazamiento = input(
+            'Introduzca el desplazamiento entre caracteres: ')
+        validarEntradaDesplazamiento(desplazamiento)
+    return desplazamiento
 
 
 def validarEntradaOpcion(opcion):
@@ -79,10 +83,12 @@ def validarEntradaOpcion(opcion):
         if opcion == '1':
             # Pedir texto
             texto = input('Introduce el texto que desea cifrar: ')
+            pedirDesplazamiento()
             cifrarTexto(texto.lower())
         else:
             # Pedir texto
             texto = input('Introduce el texto a Descifrar: ')
+            pedirDesplazamiento()
             descrifrarTexto(texto.lower())
         return True
 
@@ -100,21 +106,11 @@ def validarEntradaDesplazamiento(desplazamiento):
 opcion = input('Elija opcion (Escriba el Nº):\
                   \n\t 1- Cifrar un texto\
                   \n\t 2- Descifrartexto\n\t\t\t\t')
-
-# Pedir distancia entre caracteres
-desplazamiento = input('Introduzca el desplazamiento entre caracteres: ')
-
 while not validarEntradaOpcion(opcion):
     print('Debe elgir escribiendo el numero que identica la opcion: ')
     opcion = input('Elija opcion (Escriba el Nº):\
                     \n\t 1- Cifrar un texto\
                     \n\t 2- Descifrartexto\n\t\t\t\t')
-
-
-while not validarEntradaDesplazamiento(desplazamiento):
-    print('Debe introducir un desplazamiento para poder cifrar el mensaje: ')
-    desplazamiento = input('Introduzca el desplazamiento entre caracteres: ')
-    validarEntradaDesplazamiento(desplazamiento)
 
 
 if textoCrip == '':
