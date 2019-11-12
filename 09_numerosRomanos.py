@@ -22,7 +22,7 @@ def descomponiendoNumArabigo(numero):  # Convertir a romano:
             elif mayorTres == 'IIII':
                 resultado += 'IV'
             else:
-                resultado += item*cociente
+                resultado += mayorTres
             print(
                 f'Letra Romana {item}\'s--> {cociente}\t num Arabe--> {numRomanos.get(item)}')
     # print(f'Resultado al final --> {resultado}')
