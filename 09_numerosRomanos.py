@@ -2,7 +2,8 @@
 # I	1	|   V	5	|   X	10
 # L	50	|   C	100	|   D	500 | M	1000
 
-numRomanos2 = {1: 'I', 5: 'V', 10: 'X', 50: 'L', 100: 'C', 500: 'D', 1000: 'M'}
+# valoresNumerosRomanos = {1: 'I', 5: 'V', 10: 'X', 50: 'L', 100: 'C', 500: 'D', 1000: 'M'}
+
 numRomanos = {'M': 1000, 'CM': 900, 'D': 500, 'C': 100,
               'XC': 90, 'L': 50, 'X': 10, 'IX': 9, 'V': 5, 'I': 1}
 
@@ -24,7 +25,7 @@ def descomponiendoNumArabigo(numero):  # Convertir a romano:
                 resultado += item*cociente
             print(
                 f'Letra Romana {item}\'s--> {cociente}\t num Arabe--> {numRomanos.get(item)}')
-    print(f'Resultado al final --> {resultado}')
+    # print(f'Resultado al final --> {resultado}')
     return resultado
 
 
