@@ -1,29 +1,26 @@
-# palos = ['Oro', 'Copa', 'Espada', 'Basto']
-# cartas = ['As', '2', '3', '4', '5', '6', '7', 'Sota', 'Caballo', 'Rey']
-palos = ['Oro', 'Copa']
-cartas = ['As', 'Sota']
-
+palos = ['oro', 'copa', 'espada', 'basto']
+cartas = ['As', '2', '3', '4', '5', '6', '7', 'Sota', 'Caballo', 'Rey']
 baraja = []
 
 
 def crearBaraja(palos, cartas):
     for palo in palos:
         for numCarta in cartas:
-            carta = (f'{numCarta} de {palo}')
+            carta = (f'{numCarta[0]}.{palo[0]}')
             baraja.append(carta)
     return baraja
 
 
 def barajar(baraja, desplazamiento):
-    for c in range(len(baraja)):
-        if c < len(baraja):
-            copioPosBaraja = baraja.index(baraja[c])
-            baraja.remove(baraja[c])
-            baraja[desplazamiento] = baraja.append(copioPosBaraja)
-    print(baraja)
+    for i in range(len(baraja)):
+        valor = baraja[i]
+        baraja.remove(valor)
+        baraja.insert(desplazamiento, valor)
+    return baraja
 
 
 barajaCreada = crearBaraja(palos, cartas)
-print(f'La baraja completa es: {barajaCreada}')
+print(f'Baraja Comepleta:\n\n{barajaCreada}\n\n')
 
-barajada = barajar(baraja, 1)
+barajar = barajar(baraja, 19)
+print(barajar)
