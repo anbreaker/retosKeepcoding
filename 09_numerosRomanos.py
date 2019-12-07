@@ -23,19 +23,18 @@ def descomponiendoNumArabigo(numero):  # Convertir a romano:
                 resultado += 'IV'
             else:
                 resultado += mayorTres
-            print(
-                f'Letra Romana {item}\'s--> {cociente}\t num Arabe--> {numRomanos.get(item)}')
+            # print(f'Letra Romana {item}\'s--> {cociente}\t num Arabe--> {numRomanos.get(item)}')
     # print(f'Resultado al final --> {resultado}')
     return resultado
 
 
+'''
 def validarNumero(numero):
     if numero > 0:
         # print(f'en la def {numero}')
         return True
     else:
         return False
-
 
 # Pedir opciones
 numero = 0
@@ -45,8 +44,19 @@ while not validarNumero(numero):
             numero = int(input('Introduzca un numero entero: '))
     except ValueError:
         print('Debes introducir sólo numéros enteros positivos. ')
+'''
 
 
-# numero = 3999
+def descomponiendoNumRomano(numRoman):
+    resultado = 0
+    for item in numRoman:
+        resultado += numRomanos.get(item)
+        print(resultado)
+    return resultado
 
-print(f'El numero {numero} en romano es: {descomponiendoNumArabigo(numero)}')
+
+numero = 199
+numRoman = 'XIV'
+
+# print(f'El numero {numero} en romano es: {descomponiendoNumArabigo(numero)}')
+print(f'El numero {numRoman} romano es--> {descomponiendoNumRomano(numRoman)}')
