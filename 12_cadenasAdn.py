@@ -9,12 +9,19 @@
 # Para el ejemplo anterior, el resultado es CTTCCT porque que es el conjunto
 # ordenado de bases adyacentes de mayor tamaño que se encuentra en ambas formas de vida
 
-# Ejemplo de entrada
-#       CTGACTGA ACTGAGC
-#       CGTAATTGCGAT CGTACAGTAGC
-#       CTGGGCCTTGAGGAAAACTG GTACCAGTACTGATAGT
+# Ejemplo de entrada                                # Salida de la muestra
+#       CTGACTGA ACTGAGC                            #       ACTGA
+#       CGTAATTGCGAT CGTACAGTAGC                    #       CGTA
+#       CTGGGCCTTGAGGAAAACTG GTACCAGTACTGATAGT      #       ACTG
 
-# Salida de la muestra
-#       ACTGA
-#       CGTA
-#       ACTG
+adn1 = 'CTGACTGA'
+adn2 = 'ACTGAGC'
+adnComun = ''
+
+for b in range(len(adn1)):
+    for l in adn2:
+        bL = adn1[b]
+        cdnAnterior = l
+        if adn1[b] == l and adn1 == cdnAnterior:
+            adnComun += l
+print(adnComun)
