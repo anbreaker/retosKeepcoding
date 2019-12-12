@@ -92,19 +92,28 @@ def numerosSucesor(sucesores, numNombresReyes):
     for s in sucesores:
         if s in numNombresReyes.keys():
             numNombresReyes[s] += 1
-            print(numNombresReyes[s])
+            p = print(numNombresReyes[s])
             numNombresReyes.get(s)
         else:
             numNombresReyes[s] = 1
-            print(numNombresReyes[s])
+            p = print(numNombresReyes[s])
 
 
-m = nombrePorCoronacion(reyes, sucesorEsp)
-print(m[0])
+sp = nombrePorCoronacion(reyes, sucesorEsp)
+print(sp[0])
 mostrarDisnatia(reyes)
-print(m[1])
+print(sp[1])
 mostrarDisnatia(sucesorEsp)
 # print('Ver diccionario--> ', m[2])
 # print('Ver claves -> ', numNombresReyes.keys())
 numerosSucesor(sucesorEsp, numNombresReyes)
 # print('Ver diccionario--> ', m[2])
+print('\n')
+
+
+en = nombrePorCoronacion(kings, sucesorEsp)
+print(en[0])
+mostrarDisnatia(kings)
+print(en[1])
+mostrarDisnatia(sucesorUK)
+numerosSucesor(sucesorUK, numNombresReyes)
