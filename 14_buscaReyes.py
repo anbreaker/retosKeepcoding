@@ -64,6 +64,9 @@ kings = ['Carlos', 'Isabel', 'Carlos', 'Jorge', 'Jorge', 'Jorge',
 
 sucesorUK = ['Carlos', 'Guillermo', 'Jorge']
 
+numNombresReyes = {}
+numNombresSucesores = {}
+
 
 def mostrarDisnatia(lista):
     for l in lista:
@@ -75,22 +78,33 @@ def mostrarDisnatia(lista):
 def nombrePorCoronacion(reyes, sucesores):
     numReyes = len(reyes)
     numSucesores = len(sucesores)
-    numNombres = {}
 
     for r in reyes:
-        if r in numNombres:
-            numNombres[r] += 1
+        if r in numNombresReyes:
+            numNombresReyes[r] += 1
         else:
-            numNombres[r] = 1
+            numNombresReyes[r] = 1
 
+    return numReyes, numSucesores, numNombresReyes
+
+
+def numerosSucesor(sucesores, numNombresReyes):
     for s in sucesores:
-        if s in numNombres:
-            numNombres[s] += 1
+        if s in numNombresReyes.keys():
+            numNombresReyes[s] += 1
+            print(numNombresReyes[s])
+            numNombresReyes.get(s)
         else:
-            numNombres[s] = 1
+            numNombresReyes[s] = 1
+            print(numNombresReyes[s])
 
-    return f'{numReyes} \n {numNombres}'
 
-
-print(nombrePorCoronacion(reyes, sucesorEsp))
+m = nombrePorCoronacion(reyes, sucesorEsp)
+print(m[0])
 mostrarDisnatia(reyes)
+print(m[1])
+mostrarDisnatia(sucesorEsp)
+# print('Ver diccionario--> ', m[2])
+# print('Ver claves -> ', numNombresReyes.keys())
+numerosSucesor(sucesorEsp, numNombresReyes)
+# print('Ver diccionario--> ', m[2])
