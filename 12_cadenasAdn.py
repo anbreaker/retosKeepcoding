@@ -18,28 +18,11 @@ adn1 = 'CTGACTGA'
 adn2 = 'ACTGAGC'
 cadenaLarga = ''
 
-for b in adn1:
-    for l in adn2:
-        bL = b
-        cdnAnterior = l
-        if b == l and b == cdnAnterior:
-            if cdnAnterior in cadenaLarga:
-                pass
-            else:
-                cadenaLarga += l
-print(cadenaLarga)
+i1 = 1
+i2 = 0
+while i1 < len(adn1):
+    while i2 < len(adn2):
+        if adn1[i1] == adn2[i2]:
+            cadenaLarga += adn1[i1]
 
-
-
-'''
-for b in range(len(adn1)):
-    for l in adn2:
-        bL = adn1[b]
-        cdnAnterior = l
-        if adn1[b] == l and adn1[b] == cdnAnterior:
-            if cdnAnterior in adnComun:
-                pass
-            else:
-                cadenaLarga += l
-print(cadenaLarga)
-'''
+    else:
